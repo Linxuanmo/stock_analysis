@@ -1,9 +1,10 @@
 1.文档总框架：
+```
 stock_analysis/
 ├── README.md                     # 项目说明与迁移指南
 ├── data/
-│   ├── raw/          # 原始下载数据
-│   └── processed/    # 清洗后、中间数据
+│   ├── raw/                      # 原始下载数据
+│   └── processed/                # 清洗后、中间数据、特征文件
 ├── requirements.txt
 ├── setup.py / pyproject.toml
 ├── config/
@@ -52,24 +53,25 @@ stock_analysis/
 │   ├── logger.py                 # 统一日志
 │   └── platform_adapter.py       # 平台迁移适配器（切换券商）
 ├── tests/
-│   ├── test_fetcher.py
-│   ├── test_features.py
-│   ├── test_strategies.py
-    ├── test_load.py
-    ├── test_training.py          #数据代码测试
-    ├── test_peak_visual.py       #特征--高峰向量切割测试
-    ├── 
-    ├── 
-    ├── 
-    ├── 
-│   └── test_evaluation.py
-├── notebooks/                    # 探索性分析Notebook（边缘）
-│   └── demo.ipynb
-└── outputs/                      # 输出目录（图表、报告、模型）
-    ├── features/
-    ├── strategies/
-    └── reports/
-
+│   ├── test_load.py              # 数据加载测试
+│   ├── test_fetcher.py           # 数据读取器单元测试
+│   ├── test_features.py          # 特征提取批量运行
+│   ├── test_peak_visual.py       # 高峰切割可视化验证
+│   ├── test_training.py          # 数据/模型训练测试
+│   ├── test_strategies.py        # 策略生成测试
+│   └── test_evaluation.py        # 模拟盘评估测试
+├── docs/
+│   ├── data_loading_guide.md     # 数据读取规范
+│   ├── feature_engineering.md    # 特征工程说明
+│   ├── strategy_guide.md         # 策略生成与回测指南
+│   └── architecture.md           # 架构设计说明
+├── notebooks/
+│   └── demo.ipynb                # 探索性分析Notebook
+└── outputs/
+    ├── features/                 # 输出特征文件
+    ├── strategies/               # 输出策略公式
+    └── reports/                  # 输出评估报告和图表
+```
 2.分析思路与模块
 # 科创板股票分析系统
 ## 1. 数据获取与处理
@@ -78,6 +80,7 @@ stock_analysis/
 - 格式：csv（通达信导出的 .xls 实际上是制表符分隔的文本文件，不是二进制 Excel）
 - 复权：前复权
 - 板块：科创板成分股+指数
+- 命名：序号_股票序号（本次于2026/5/29日取科创（688）总量前50只，以符号“_”前数字为股票单次训练的序号）
 - 清洗：缺失值、除权校准
 ## 2. 特征工程
 - 视角A：峰值向量切割
