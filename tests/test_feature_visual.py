@@ -28,11 +28,11 @@ from core.features.image_peak_analyzer import ImagePeakAnalyzer
 PERIOD_DEFAULT_DIRS = {
     '1': {
         'label': '日线',
-        'path': r"D:\desk_file\Me\school\大一下\股票\stock_analysis\data\raw\daily\2026_5_29__688__50__total"
+        'path': str(PROJECT_ROOT / "data" / "raw" / "daily" / "2026_5_29__688__50__total")
     },
     '2': {
         'label': '月线',
-        'path': r"D:\desk_file\Me\school\大一下\股票\stock_analysis\data\raw\monthly\2026_06_07__688__30__monthly"
+        'path': str(PROJECT_ROOT / "data" / "raw" / "monthly" / "2026_06_07__688__30__monthly")
     },
     '3': {
         'label': '自定义周期',
